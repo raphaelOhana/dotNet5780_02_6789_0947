@@ -26,7 +26,7 @@ namespace dotNet_5780_02_6789_0947
         {
             string list = "";
             foreach(HostingUnit help in HostingUnitCollection)
-                list+=help.HostingUnitKey+"\t"+ help.ToString()+"\n";
+                list+="\t"+help.HostingUnitKey+"\t\n"+ help.ToString()+"\n";
             return list;
         }
         private long SubmitRequest(GuestRequest guestReq)
