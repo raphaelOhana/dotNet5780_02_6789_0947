@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet_5780_02_6789_1947
+namespace dotNet_5780_02_6789_0947
 {
+    /*a utiliser si besoin*/
     enum Mounth { January = 1, February, March, April, May, June, July, August, September, October, November, December }
 
     public class HostingUnit:IComparable<HostingUnit>
     {
         /*variable*/
-        public readonly  int HostingUnitKey;
+        public readonly  int HostingUnitKey;/*id hotel*/
         static public int stSerialKey = 10000000;
         public bool[,] Diary = new bool[12, 31];
         /*ctor*/
@@ -61,7 +62,7 @@ namespace dotNet_5780_02_6789_1947
                 }
                 if ((Diary[j - 1, k - 1] == false) && (busy == true))//ca veut dire si c'est le dernier d une liste de jour prit
                 {
-                   ListOfBusy += Convert.ToString( k) + Convert.ToString((Mounth)j)+ "/n";
+                   ListOfBusy += Convert.ToString( k) + Convert.ToString((Mounth)j)+ "\n";
                     busy = false;
                 }
             }
@@ -84,10 +85,12 @@ namespace dotNet_5780_02_6789_1947
                     }
                     Diary[j - 1, k - 1] = true; //ecrit quil sont occupé 
                 }
+                guestReq.IsApproved = true;
                 return true;
             }
             else
             {
+                guestReq.IsApproved =false;
                 return false;
             }
         }
@@ -102,12 +105,11 @@ namespace dotNet_5780_02_6789_1947
 
         public int CompareTo(HostingUnit other)
         {
-            if(this.GetAnnualBusyDays()<other.GetAnnualBusyDays())
+            if(this.GetAnnualBusyDays()<other.GetAnnualBusyDays())// plus libre 
                  return -1;
-            if(this.GetAnnualBusyDays()>other.GetAnnualBusyDays())
+            if(this.GetAnnualBusyDays()>other.GetAnnualBusyDays())//moin libre 
                 return 1;
-            if(this.GetAnnualBusyDays()==other.GetAnnualBusyDays())
-                return 0;
+            return 0;//pareille
         }
     }
 
