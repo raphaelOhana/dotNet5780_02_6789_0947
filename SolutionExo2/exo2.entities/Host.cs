@@ -18,8 +18,8 @@ namespace dotNet_5780_02_6789_1947
         {
             HostKey = id;
             HostingUnitCollection = new List<HostingUnit>();
-             for(int i=0;i< numToHelpME ;i++)
-                     HostingUnitCollection.Add();
+             for(int i=0;i< x;i++)
+                     HostingUnitCollection.Add(new HostingUnit());
             numToHelpME=x;
             //a completer
         }
@@ -32,20 +32,30 @@ namespace dotNet_5780_02_6789_1947
         }
         private long SubmitRequest(GuestRequest guestReq)
         {
-            return 100;
+            foreach(HostingUnit help in HostingUnitCollection)
+                if( help.ApproveRequest(guestReq))
+                    return help.HostingUnitKey;
+            return -1;
         }
         public int GetHostAnnualBusyDays()
         {
-            return 1;
+            int AnnualBusyDays =0;
+            foreach(HostingUnit help in HostingUnitCollection)
+                    AnnualBusyDays+=help.GetAnnualBusyDays();
+            return AnnualBusyDays;
         }
         public void SortUnits()
         {
-
+            HostingUnitCollection.Sort();
         }
 
         public bool AssignRequests(params GuestRequest[] request)
         {
-            return true;
+            bool allTrue=true;
+            foreach(GuestRequest help in request)
+               if(SubmitRequest(help)==false)
+                    allTrue=false;
+            return allTrue;
         }
         public string indexer()
         {

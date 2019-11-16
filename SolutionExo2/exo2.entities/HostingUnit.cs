@@ -102,7 +102,12 @@ namespace dotNet_5780_02_6789_1947
 
         public int CompareTo(HostingUnit other)
         {
-            return 1;
+            if(this.GetAnnualBusyDays()<other.GetAnnualBusyDays())
+                 return -1;
+            if(this.GetAnnualBusyDays()>other.GetAnnualBusyDays())
+                return 1;
+            if(this.GetAnnualBusyDays()==other.GetAnnualBusyDays())
+                return 0;
         }
     }
 
