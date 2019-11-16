@@ -13,11 +13,13 @@ namespace dotNet_5780_02_6789_0947
             private static  GuestRequest CreateRandomRequest()
             {
                 GuestRequest gs = new GuestRequest();
-                gs.Entry_Date=rand.Next(DateTime);
-              //  gs.Entry_Date.Month=rand.Next(1,11);
-               // gs.Release_Date.day=gs.Entry_Date.day+rand.Next(2,10);
-           
-                //Fill randomally the Entry and Release dates of gs
+                     /*start*/
+                DateTime dateNow=DateTime.Today;
+                gs.Entry_Date.Day = rand.Next(1,31);
+                gs.Entry_Date.Month=dateNow.Month+rand.Next(1,11);
+               
+                gs.Release_Date.Day=(gs.Entry_Date.Day+rand.Next(2,10))%31;
+                gs.Release_Date.Month= (gs.Entry_Date.Day+rand.Next(2,10))/31;
                 return gs;
             }
             static void Main(string[] args)

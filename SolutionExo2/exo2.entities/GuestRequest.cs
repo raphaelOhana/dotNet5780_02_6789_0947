@@ -9,8 +9,8 @@ namespace dotNet_5780_02_6789_0947
     public class GuestRequest
     {
         
-        public DateTime Entry_Date { get =>Entry_Date; }//date de debut 
-        public DateTime Release_Date { get => Release_Date;}//date de fin
+        public DateTime Entry_Date { get =>Entry_Date;  set=>new DateTime(); }//date de debut 
+        public DateTime Release_Date { get => Release_Date;set=>new DateTime();}//date de fin
 
         public bool IsApproved;//a initianiliser apres verification de la fonction de host
         override public string ToString()
