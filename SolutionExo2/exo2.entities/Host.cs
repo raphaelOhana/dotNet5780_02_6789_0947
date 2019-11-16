@@ -10,6 +10,7 @@ namespace dotNet_5780_02_6789_1947
     public class Host:IEnumerable<HostingUnit>
     {
         //a verifier 
+        private int numToHelpME ;
         public readonly int HostKey;
         public  List<HostingUnit> HostingUnitCollection;
         //ctor
@@ -17,14 +18,17 @@ namespace dotNet_5780_02_6789_1947
         {
             HostKey = id;
             HostingUnitCollection = new List<HostingUnit>();
-           
+             for(int i=0;i< numToHelpME ;i++)
+                     HostingUnitCollection.Add();
+            numToHelpME=x;
             //a completer
         }
         public override string ToString()
         {
             string list = "";
-            for(int i=0;i< 10;i++)
-            return "";
+            for(int i=0;i< numToHelpME ;i++)
+                list+= HostingUnitCollection[i].ToString()+"/n";
+            return list;
         }
         private long SubmitRequest(GuestRequest guestReq)
         {
