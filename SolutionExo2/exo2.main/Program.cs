@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace dotNet_5780_02_6789_0947
+
+namespace dotNet_5780_02_6789_1947
 {
    
     class Program
@@ -13,13 +14,7 @@ namespace dotNet_5780_02_6789_0947
             private static  GuestRequest CreateRandomRequest()
             {
                 GuestRequest gs = new GuestRequest();
-                     /*start*/
-                DateTime dateNow=DateTime.Today;
-                gs.Entry_Date.Day = rand.Next(1,31);
-                gs.Entry_Date.Month=dateNow.Month+rand.Next(1,11);
-               
-                gs.Release_Date.Day=(gs.Entry_Date.Day+rand.Next(2,10))%31;
-                gs.Release_Date.Month= (gs.Entry_Date.Day+rand.Next(2,10))/31;
+                //Fill randomally the Entry and Release dates of gs
                 return gs;
             }
             static void Main(string[] args)
@@ -69,7 +64,7 @@ namespace dotNet_5780_02_6789_0947
                     //test Host IEnuramble is ok
                     foreach (HostingUnit unit in host)
                     {
-                        dict[unit.HostingUnitKey] = unit.GetAnnualBusyPercentage();
+                        dict[unit.HostingUnitKey] = unit.GetAnnualBusyPrecentege();
                     }
                 }
                 //get max value in dictionary
@@ -83,7 +78,7 @@ namespace dotNet_5780_02_6789_0947
                     //test indexer of Host
                     for (int i = 0; i < (host.HostingUnitCollection.Count); i++)
                     {
-                        if (host.HostingUnitCollection[i].HostingUnitKey == maxKey)
+                        if (host[i].HostingUnitKey == maxKey)
                         {
                             //sort this host by occupancy of its units
                             host.SortUnits();

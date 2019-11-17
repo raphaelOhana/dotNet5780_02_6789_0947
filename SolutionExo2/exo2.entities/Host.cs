@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dotNet_5780_02_6789_0947
+namespace dotNet_5780_02_6789_O947
 {
     public class Host:IEnumerable<HostingUnit>
     {
         //a verifier 
-       // private int numToHelpME ;
+        private int numToHelpME ;
         public readonly int HostKey;
         public  List<HostingUnit> HostingUnitCollection;
         //ctor
@@ -20,13 +20,14 @@ namespace dotNet_5780_02_6789_0947
             HostingUnitCollection = new List<HostingUnit>();
              for(int i=0;i< x;i++)
                      HostingUnitCollection.Add(new HostingUnit());
+            numToHelpME=x;
             
         }
         public override string ToString()
         {
             string list = "";
-            foreach(HostingUnit help in HostingUnitCollection)
-                list+=help.HostingUnitKey+"\t"+ help.ToString()+"\n";
+            for(int i=0;i< numToHelpME ;i++)
+                list+= HostingUnitCollection[i].ToString()+"/n";
             return list;
         }
         private long SubmitRequest(GuestRequest guestReq)
@@ -50,11 +51,11 @@ namespace dotNet_5780_02_6789_0947
 
         public bool AssignRequests(params GuestRequest[] request)
         {
-           // bool allTrue=true;
+            bool allTrue=true;
             foreach(GuestRequest help in request)
-               if(SubmitRequest(help)==-1)
-                   return false;
-            return true;
+               if(SubmitRequest(help)==false)
+                    allTrue=false;
+            return allTrue;
         }
         public string indexer()
         {

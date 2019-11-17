@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace dotNet_5780_02_6789_0947
 {
-    /*a utiliser si besoin*/
     enum Mounth { January = 1, February, March, April, May, June, July, August, September, October, November, December }
 
     public class HostingUnit:IComparable<HostingUnit>
     {
         /*variable*/
-        public readonly  int HostingUnitKey;/*id hotel*/
+        public readonly  int HostingUnitKey; 
         static public int stSerialKey = 10000000;
         public bool[,] Diary = new bool[12, 31];
         /*ctor*/
@@ -26,6 +25,7 @@ namespace dotNet_5780_02_6789_0947
         {
             return X.Release_Date.Day - X.Entry_Date.Day + (X.Release_Date.Month - X.Entry_Date.Month) * 31;
         }
+
         static int count(bool[,] tab, bool flag, int days, int mounth, int nbOfDays)
         {
             int count = 0;
@@ -48,7 +48,7 @@ namespace dotNet_5780_02_6789_0947
         {
             string ListOfBusy = "";
             bool busy = false;
-            for (int i = 0, j = 1, k = 1; i < 372; i++, k++)
+            for (int i = 0, j = 1, k = 1; i < 372; i++, k++) //j=mois //k=jours
             {
                 if (k > 31)
                 {
@@ -57,17 +57,18 @@ namespace dotNet_5780_02_6789_0947
                 }
                 if ((Diary[j - 1, k - 1] == true) && (busy == false)) //ca veut dire si c'est le premier d une liste de jour prit 
                 {
-                    ListOfBusy+= Convert.ToString( k)+ " " + Convert.ToString((Mounth)j)+ " -> "; 
+                    ListOfBusy+= Convert.ToString(k)+ " " + Convert.ToString((Mounth)j)+ " -> "; 
                     busy = true;
                 }
                 if ((Diary[j - 1, k - 1] == false) && (busy == true))//ca veut dire si c'est le dernier d une liste de jour prit
                 {
-                   ListOfBusy += Convert.ToString( k) + Convert.ToString((Mounth)j)+ "\n";
+                   ListOfBusy += Convert.ToString(k) + Convert.ToString((Mounth)j)+ "\n";
                     busy = false;
                 }
             }
             return ListOfBusy;
         }
+
         public bool ApproveRequest(GuestRequest guestReq)
         {
             int mounth = guestReq.Entry_Date.Month;
@@ -85,12 +86,10 @@ namespace dotNet_5780_02_6789_0947
                     }
                     Diary[j - 1, k - 1] = true; //ecrit quil sont occupé 
                 }
-                guestReq.IsApproved = true;
                 return true;
             }
             else
             {
-                guestReq.IsApproved =false;
                 return false;
             }
         }
@@ -105,11 +104,12 @@ namespace dotNet_5780_02_6789_0947
 
         public int CompareTo(HostingUnit other)
         {
-            if(this.GetAnnualBusyDays()<other.GetAnnualBusyDays())// plus libre 
+            if(this.GetAnnualBusyDays()<other.GetAnnualBusyDays())
                  return -1;
-            if(this.GetAnnualBusyDays()>other.GetAnnualBusyDays())//moin libre 
+            if(this.GetAnnualBusyDays()>other.GetAnnualBusyDays())
                 return 1;
-            return 0;//pareille
+            if(this.GetAnnualBusyDays()==other.GetAnnualBusyDays())
+                return 0;
         }
     }
 
