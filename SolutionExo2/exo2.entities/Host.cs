@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet_5780_02_6789_0947
 {
-    public class Host:IEnumerable<HostingUnit>
+    public class Host : IEnumerable<HostingUnit>
     {
         //a verifier 
        // private int numToHelpME ;
@@ -56,19 +56,19 @@ namespace dotNet_5780_02_6789_0947
                    return false;
             return true;
         }
-        public string indexer()
-        {
-            return "";
-        }
 
+        public HostingUnit this[int index]
+	    {
+		    get =>  HostingUnitCollection[index];
+	    }
         public IEnumerator<HostingUnit> GetEnumerator()
         {
             return HostingUnitCollection.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        private IEnumerator IEnumerable.GetEnumerator()
         {
-           return HostingUnitCollection.GetEnumerator();
+           return this.GetEnumerator();
         }
     }
 }

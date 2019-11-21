@@ -138,7 +138,7 @@ namespace dotNet_5780_02_6789_0947
                 //test indexer of Host
                 for (int i = 0; i < (host.HostingUnitCollection.Count); i++)
                 {
-                    if (host.HostingUnitCollection[i].HostingUnitKey == maxKey)
+                    if (host[i].HostingUnitKey == maxKey)
                     {
                         //sort this host by occupancy of its units
                         host.SortUnits();
