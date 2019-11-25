@@ -66,7 +66,7 @@ namespace dotNet_5780_02_6789_0947
             return HostingUnitCollection.GetEnumerator();
         }
 
-        private IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
            return this.GetEnumerator();
         }

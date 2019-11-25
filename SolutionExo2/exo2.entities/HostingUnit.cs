@@ -12,7 +12,7 @@ namespace dotNet_5780_02_6789_0947
     public class HostingUnit:IComparable<HostingUnit>
     {
         /*variable*/
-        public readonly  int HostingUnitKey;/*id hotel*/
+        public readonly int HostingUnitKey;/*id hotel*/
         static public int stSerialKey = 10000000;
         public bool[,] Diary = new bool[12, 31];
         /*ctor*/
